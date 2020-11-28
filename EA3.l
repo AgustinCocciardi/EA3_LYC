@@ -39,11 +39,11 @@ cte_s			    \"{VALID_STRING}\"
 
 %%
 
-{id}                {return id;}
-{cte}               {return cte;}
 {write}             {return write;}
 {read}              {return read;}
 {posicion}          {return posicion;}
+{id}                {return id;}
+{cte}               {return cte;}
 {asigna}            {return asigna;}
 {para}              {return para;}
 {parc}              {return parc;}
