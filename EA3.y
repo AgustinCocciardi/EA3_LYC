@@ -13,10 +13,9 @@ int yyerror();
 int yylex();
 
 int yylineno;
-char* s;
+char* a;
 %}
 
-%start S
 %token  id 
 %token  cte
 %token  write
@@ -30,6 +29,8 @@ char* s;
 %token  coma
 %token  pyc
 %token  cte_s
+
+%start S
 
 %%
 
@@ -90,7 +91,7 @@ int main(int argc, char* argv[])
 int yyerror(void)
 {
     printf("Syntax Error\n");
-    printf("Nro. de linea: %d \t %s\n", yylineno, s);
+    printf("Nro. de linea: %d \t %s\n", yylineno, a);
     system("Pause");
     exit(1);
 }
