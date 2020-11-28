@@ -41,7 +41,7 @@ PROG:
 SENT:
     READ    {printf("\n\tRegla 3: SENT -> READ\n");}
     |   WRITE   {printf("\n\tRegla 3: SENT -> WRITE\n");}
-    |   POS    {printf("\n\tRegla 3: SENT -> POS\n");}
+    |   ASIG    {printf("\n\tRegla 3: SENT -> ASIG\n");}
     ;
 
 READ:
