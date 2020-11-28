@@ -53,8 +53,8 @@ ASIG:
     ;
 
 POS:
-    posicion para id pyc ca LISTA cc parc  {printf("\n\tRegla 6: POS -> posicion PARA ID PARC CA LISTA CC PARC\n");}
-    |   posicion para id pyc ca cc parc  {printf("\n\tRegla 7: POS -> posicion PARA ID PARC CA CC PARC\n");}
+    posicion para id pyc ca LISTA cc parc  {printf("\n\tRegla 6: POS -> posicion PARA ID PYC CA LISTA CC PARC\n");}
+    |   posicion para id pyc ca cc parc  {printf("\n\tRegla 7: POS -> posicion PARA ID PYC CA CC PARC\n");}
     ;
 
 LISTA:
