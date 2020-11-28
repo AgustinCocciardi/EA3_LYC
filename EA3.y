@@ -11,8 +11,12 @@ FILE  *yyin;
 
 int yyerror();
 int yylex();
+
+int yylineno;
+char* s;
 %}
 
+%start S
 %token  id 
 %token  cte
 %token  write
@@ -86,6 +90,7 @@ int main(int argc, char* argv[])
 int yyerror(void)
 {
     printf("Syntax Error\n");
+    printf("Nro. de linea: %d \t %s\n", yylineno, s);
     system("Pause");
     exit(1);
 }
