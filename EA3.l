@@ -25,9 +25,9 @@ VALID_STRING		({CARACTER}+|{DELIM})*
 
 id					{LETRA}({LETRA}|{DIGITO})*
 cte                 {POSITIVO}{DIGITO}*
-write               "WRITE|write"
-read                "READ|read"
-posicion            "POSICION|posicion"
+write               "WRITE"|"write"
+read                "READ"|"read"
+posicion            "POSICION"|"posicion"
 asigna              "="
 para                "("
 parc                ")"
