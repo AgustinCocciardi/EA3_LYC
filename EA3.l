@@ -20,7 +20,7 @@ DIGITO				[0-9]
 POSITIVO            [1-9]
 LETRA				[a-zA-Z]
 DELIM				[ \t\r]
-CARACTER			[a-z|A-Z|0-9|=|>|<|!|:|+|-|*|/|?|¿|!|¡|@|%|#|&|°|´|^|`|~|/|\\|-|_|.|,|;|¬|\|á|é|í|ó|ú|ü||]
+CARACTER			[a-z,A-Z,0-9,=,>,<,!,:,+,-,*,/,?,¿,!,¡,@,%,#,&,°,´,^,`,~,/,\\,-,_,"."",;,¬,\,À-ÿ,|]
 VALID_STRING		({CARACTER}+|{DELIM})*
 
 id					{LETRA}({LETRA}|{DIGITO})*
