@@ -1,59 +1,75 @@
 %{
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+	#include <string.h>
+    #include "y.tab.h"
 
-#include "y.tab.h"
-#define TOPE_ENTERO 65535
+	int error(char* mensaje);
 
-FILE *yyin;
-int yylval;
-char *yyltext;
-
+	FILE  *yyin;
 %}
 
 %option noyywrap
 %option yylineno
 
-DIGITO				[0-9]
-POSITIVO            [1-9]
-LETRA				[a-zA-Z]
-DELIM				[ \t\r]
-CARACTER			[a-z,A-Z,0-9,=,>,<,!,:,+,-,*,/,?,¿,!,¡,@,%,#,&,°,´,^,`,~,/,\\,-,_,"."",;,¬,\,À-ÿ,|]
-VALID_STRING		({CARACTER}+|{DELIM})*
+DIGITO 	[0-9]
+LETRA 	[a-zA-ZñÑ]
+ID		{LETRA}({LETRA}|{DIGITO})*
+CTE		{DIGITO}+
+CARACTERES	{LETRA}|{DIGITO}|.
+CTE_S	\"{CARACTERES}*\"
+ESPACIO     " "
 
-id					{LETRA}({LETRA}|{DIGITO})*
-cte                 {POSITIVO}{DIGITO}*
-write               "WRITE"|"write"
-read                "READ"|"read"
-posicion            "POSICION"|"posicion"
-asigna              "="
-para                "("
-parc                ")"
-ca                  "["
-cc                  "]"
-coma                ","
-pyc                 ";"
-cte_s			    \"{VALID_STRING}\"
+%%
+ /* Operadores */
+"="						{ return ASIGNA;}
+
+ /* Otros simbolos */
+"("							{ return PARA;}
+")"							{ return PARC;}
+"["							{ return CA;}
+"]"							{ return CC;}
+","							{ return COMA;}
+";"							{ return PYC;}
+
+ /* Funciones */
+"READ"						{ return READ;}
+"WRITE"					    { return WRITE;}
+"posicion"					{ return POSICION;}
+
+
+ /* Identificadores y constantes */
+{ID}						{
+                                yylval.string_val = strdup(yytext);   
+                                return ID;
+                            }
+	
+{CTE}					    {
+                                yylval.int_val = atoi(yytext);
+                                return CTE;
+                            }
+						
+{CTE_S}				        {
+                                    yylval.string_val = strdup(yytext);
+                                    return CTE_S;
+                            }
+								
+{ESPACIO}
+\n
+\t
+\r\n
+.							{ error("Caracter invalido.");}
 
 %%
 
-{write}             {return write;}
-{read}              {return read;}
-{posicion}          {return posicion;}
-{id}                {return id;}
-{cte}               {return cte;}
-{asigna}            {return asigna;}
-{para}              {return para;}
-{parc}              {return parc;}
-{ca}                {return ca;}
-{cc}                {return cc;}
-{coma}              {return coma;}
-{pyc}               {return pyc;}
-{cte_s}             {return cte_s;}
+int error(char* mensaje)
+{
+	printf("Error lexico: %s\n", mensaje);
+	exit (1);
+}
 
-" "
-"\n"
-"\t"
-%%
+int yyerror(char* mensaje)
+ {
+	printf("Syntax Error (linea %d): %s\n", yylineno, mensaje);
+	exit (1);
+ }
