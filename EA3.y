@@ -73,26 +73,26 @@ start:
                                                             
                                                             fIND = crear_terceto(JMP,SIN_OPERADOR,SIN_OPERADOR);
                                                             stIND = prIND;
-                                                            int pos = agregarCteStringATabla("El valor debe ser >=1");
+                                                            int pos = agregarConstanteteStringATabla("El valor debe ser >=1");
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
                                                             modificarTerceto(terceto_pivot,OP1,ultimo_terceto + OFFSET);
                                                             crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             if(esListaVacia){
-                                                                int pos= agregarCteStringATabla("La lista esta vacia");
+                                                                int pos= agregarConstanteteStringATabla("La lista esta vacia");
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
                                                                 modificarTerceto(terceto_Lista_Vacia,OP1,ultimo_terceto + OFFSET);
                                                                 wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
                                                                 jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
                                                             }else{
                                                                 jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
-                                                                pos = agregarCteStringATabla("La posicion no se encontro");
+                                                                pos = agregarConstanteteStringATabla("La posicion no se encontro");
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
                                                                 modificarTerceto(terceto_Auxiliar,OP1,ultimo_terceto+OFFSET);
 															    crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             }
 
                                                             //Ultimo terceto que será creado
-                                                            pos = agregarCteStringATabla("FIN PROGRAMA");
+                                                            pos = agregarConstanteteStringATabla("FIN PROGRAMA");
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
 
                                                             //Cambiar los últimos tercetos
@@ -218,7 +218,7 @@ escritura:
                                                             char cadena_Auxiliar[longitud];
                                                             strncpy(cadena_Auxiliar, $2 + 1, longitud);
                                                             cadena_Auxiliar[longitud] = '\0';
-                                                            int pos= agregarCteStringATabla(cadena_Auxiliar);
+                                                            int pos= agregarConstanteteStringATabla(cadena_Auxiliar);
                                                             wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
 															
 															
