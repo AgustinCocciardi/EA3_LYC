@@ -163,7 +163,7 @@ lista:
                                                             printf("REGLA 9: LISTA -> LISTA coma cte \n");
                                                             cantidadElementos++;
                                                             int cte = agregarCteIntATabla(yylval.int_val);
-                                                            int posicion = buscarIDEnTabla("@pos");
+                                                            int posicion_A_Buscar = buscarIDEnTabla("@pos");
                                                             int pivote = buscarIDEnTabla(pivot);
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR, SIN_OPERADOR);
                                                             crear_terceto(CMP,pivote, cte);
@@ -171,31 +171,31 @@ lista:
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,incremento+OFFSET, SIN_OPERADOR); 
 															//modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);
                                                             int cteZero = agregarCteIntATabla(0);
-                                                            crear_terceto(CMP,posicion,cteZero);
+                                                            crear_terceto(CMP,posicion_A_Buscar,cteZero);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
 															cte = agregarCteIntATabla(cantidadElementos);
-                                                            lIND = crear_terceto(ASIGNA,posicion,cte);
+                                                            lIND = crear_terceto(ASIGNA,posicion_A_Buscar,cte);
                                                             modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);	   
                                                         }             
     | CTE                                               {
                                                             printf("REGLA 8: LISTA -> cte \n");
                                                             // Creo una variable @pos (o la reutilizo)
                                                             cantidadElementos = 1;
-                                                            int posicion = agregarVarATabla("@pos", Int);
+                                                            int posicion_A_Buscar = agregarVarATabla("@pos", Int);
                                                             int cte = agregarCteIntATabla(yylval.int_val);
                                                             int pos = agregarCteIntATabla(0);
                                                             
                                                             int pivote = buscarIDEnTabla(pivot);
-															crear_terceto(ASIGNA, posicion, pos); //Inicializo @pos en 0
+															crear_terceto(ASIGNA, posicion_A_Buscar, pos); //Inicializo @pos en 0
                                                             crear_terceto(CMP, pivote, cte);
 															int incremento = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR); 
 															modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);
                                                             pos = agregarCteIntATabla(cantidadElementos);
                                                             cte = agregarCteIntATabla(0);
-                                                            crear_terceto(CMP,posicion,cte);
+                                                            crear_terceto(CMP,posicion_A_Buscar,cte);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
-                                                            lIND = crear_terceto(ASIGNA,posicion,pos);
+                                                            lIND = crear_terceto(ASIGNA,posicion_A_Buscar,pos);
                                                             modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);								
                                                         };
 lectura:
