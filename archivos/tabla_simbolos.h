@@ -8,7 +8,7 @@
 #define CteString 6
 
 #define TAMANIO_TABLA 150
-#define TAM_NOMBRE 200
+#define LONGITUD_CADENA 200
 
 /* Funciones */
 int agregarVarATabla(char* nombre, int tipo);
@@ -24,9 +24,9 @@ void guardarTabla(void);
 int yyerror(char* mensaje);
 
 typedef struct {
-  char nombre[TAM_NOMBRE];
+  char nombre[LONGITUD_CADENA];
   int tipo_dato;
-  char valor_s[TAM_NOMBRE];
+  char valor_s[LONGITUD_CADENA];
   float valor_f;
   int valor_i;
   int longitud;
