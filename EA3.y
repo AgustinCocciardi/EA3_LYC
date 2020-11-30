@@ -139,11 +139,11 @@ asignacion:
                                                             if(!esListaVacia){
 																int constante = agregarCteIntATabla(0);
 																int pos = buscarIDEnTabla("@pos");
-                                                                int id = agregarVarATabla($1,Int);
+                                                                int identificador = agregarVarATabla($1,Int);
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR, SIN_OPERADOR);
 																crear_terceto(CMP,pos,constante);
 																terceto_Auxiliar = crear_terceto(BEQ,SIN_OPERADOR,SIN_OPERADOR);
-                                                                aIND = crear_terceto(ASIGNA,id,pos);
+                                                                aIND = crear_terceto(ASIGNA,identificador,pos);
                                                             }
                                                             
 														};
@@ -167,15 +167,15 @@ lista:
                                                             int pivote = buscarIDEnTabla(pivot);
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR, SIN_OPERADOR);
                                                             crear_terceto(CMP,pivote, constante);
-                                                            int incremento = ultimo_terceto+5;
-                                                            terceto_Que_Se_Modifica = crear_terceto(BNE,incremento+OFFSET, SIN_OPERADOR); 
-															//modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);
+                                                            int terceto_Destino = ultimo_terceto+5;
+                                                            terceto_Que_Se_Modifica = crear_terceto(BNE,terceto_Destino+OFFSET, SIN_OPERADOR); 
+															//modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
                                                             int cteZero = agregarCteIntATabla(0);
                                                             crear_terceto(CMP,posicion_A_Buscar,cteZero);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
 															constante = agregarCteIntATabla(cantidadElementos);
                                                             lIND = crear_terceto(ASIGNA,posicion_A_Buscar,constante);
-                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);	   
+                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);	   
                                                         }             
     | CTE                                               {
                                                             printf("REGLA 8: LISTA -> cte \n");
@@ -188,15 +188,15 @@ lista:
                                                             int pivote = buscarIDEnTabla(pivot);
 															crear_terceto(ASIGNA, posicion_A_Buscar, pos); //Inicializo @pos en 0
                                                             crear_terceto(CMP, pivote, constante);
-															int incremento = ultimo_terceto+5;
+															int terceto_Destino = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR); 
-															modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);
+															modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
                                                             pos = agregarCteIntATabla(cantidadElementos);
                                                             constante = agregarCteIntATabla(0);
                                                             crear_terceto(CMP,posicion_A_Buscar,constante);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
                                                             lIND = crear_terceto(ASIGNA,posicion_A_Buscar,pos);
-                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,incremento+OFFSET);								
+                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);								
                                                         };
 lectura:
     READ ID												{
