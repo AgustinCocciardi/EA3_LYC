@@ -38,7 +38,7 @@
     int terceto_pivot;
     int terceto_Auxiliar;
     int fIND;
-    int ind_salto;
+    int jIND;
 
     /*PARA TERCETOS*/
 	terceto lista_terceto[MAX_TERCETOS];
@@ -82,9 +82,9 @@ start:
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
                                                                 modificarTerceto(terceto_Lista_Vacia,OP1,ultimo_terceto + OFFSET);
                                                                 wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
-                                                                ind_salto = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
+                                                                jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
                                                             }else{
-                                                                ind_salto = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
+                                                                jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
                                                                 pos = agregarCteStringATabla("La posicion no se encontro");
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
                                                                 modificarTerceto(terceto_Auxiliar,OP1,ultimo_terceto+OFFSET);
@@ -97,7 +97,7 @@ start:
 
                                                             //Cambiar los últimos tercetos
                                                             modificarTerceto(fIND,OP1,ultimo_terceto + OFFSET);
-                                                            modificarTerceto(ind_salto,OP1,ultimo_terceto + OFFSET);
+                                                            modificarTerceto(jIND,OP1,ultimo_terceto + OFFSET);
 
                                                             crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             
