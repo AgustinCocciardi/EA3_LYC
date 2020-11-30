@@ -169,7 +169,6 @@ lista:
                                                             crear_terceto(CMP,pivote, constante);
                                                             int terceto_Destino = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,terceto_Destino+OFFSET, SIN_OPERADOR); 
-															//modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
                                                             int cteZero = agregarCteIntATabla(0);
                                                             crear_terceto(CMP,posicion_A_Buscar,cteZero);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
