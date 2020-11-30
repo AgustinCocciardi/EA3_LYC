@@ -164,9 +164,9 @@ lista:
                                                             cantidadElementos++;
                                                             int constante = agregarCteIntATabla(yylval.int_val);
                                                             int posicion_A_Buscar = buscarIDEnTabla("@pos");
-                                                            int pivote = buscarIDEnTabla(pivot);
+                                                            int elemento_Pivot = buscarIDEnTabla(pivot);
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR, SIN_OPERADOR);
-                                                            crear_terceto(CMP,pivote, constante);
+                                                            crear_terceto(CMP,elemento_Pivot, constante);
                                                             int terceto_Destino = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,terceto_Destino+OFFSET, SIN_OPERADOR); 
                                                             int cero_En_Tabla = agregarCteIntATabla(0);
@@ -178,15 +178,13 @@ lista:
                                                         }             
     | CTE                                               {
                                                             printf("REGLA 8: LISTA -> cte \n");
-                                                            // Creo una variable @pos (o la reutilizo)
                                                             cantidadElementos = 1;
                                                             int posicion_A_Buscar = agregarVarATabla("@pos", Int);
                                                             int constante = agregarCteIntATabla(yylval.int_val);
                                                             int pos = agregarCteIntATabla(0);
-                                                            
-                                                            int pivote = buscarIDEnTabla(pivot);
-															crear_terceto(ASIGNA, posicion_A_Buscar, pos); //Inicializo @pos en 0
-                                                            crear_terceto(CMP, pivote, constante);
+                                                            int elemento_Pivot = buscarIDEnTabla(pivot);
+															crear_terceto(ASIGNA, posicion_A_Buscar, pos); 
+                                                            crear_terceto(CMP, elemento_Pivot, constante);
 															int terceto_Destino = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR); 
 															modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
@@ -201,10 +199,10 @@ lectura:
     READ ID												{
         													printf("REGLA 4: READ -> read id \n");
                                                             agregarVarATabla(yylval.string_val,Int);
-                                                            int cota = agregarCteIntATabla(1);
+                                                            int comparador = agregarCteIntATabla(1);
                                                             int pos = buscarIDEnTabla($2);
 															rIND = crear_terceto(READ, pos, SIN_OPERADOR);
-                                                            crear_terceto(CMP,pos,cota);
+                                                            crear_terceto(CMP,pos,comparador);
                                                             terceto_pivot=crear_terceto(BLT, SIN_OPERADOR, SIN_OPERADOR);
 														};
 escritura:
