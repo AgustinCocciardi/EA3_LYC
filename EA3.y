@@ -3,9 +3,9 @@
 	#include <stdlib.h>
 	#include <string.h>
 	#include "y.tab.h"
-    #include "./lib/tabla_simbolos.h"
-    #include "./lib/tercetos.h"
-    #include "./lib/assembler.h"
+    #include "./archivos/tabla_simbolos.h"
+    #include "./archivos/tercetos.h"
+    #include "./archivos/assembler.h"
 
 	int yyerror(char* mensaje);
 	int yyerror();
@@ -75,19 +75,19 @@ start:
                                                             stIND = prIND;
                                                             int pos = agregarConstanteteStringATabla("El valor debe ser >=1");
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
-                                                            modificarTerceto(terceto_pivot,OP1,ultimo_terceto + OFFSET);
+                                                            escribirTerceto(terceto_pivot,OP1,ultimo_terceto + OFFSET);
                                                             crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             if(esListaVacia){
                                                                 int pos= agregarConstanteteStringATabla("La lista esta vacia");
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
-                                                                modificarTerceto(terceto_Lista_Vacia,OP1,ultimo_terceto + OFFSET);
+                                                                escribirTerceto(terceto_Lista_Vacia,OP1,ultimo_terceto + OFFSET);
                                                                 wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
                                                                 jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
                                                             }else{
                                                                 jIND = crear_terceto(JMP, SIN_OPERADOR,SIN_OPERADOR);
                                                                 pos = agregarConstanteteStringATabla("La posicion no se encontro");
                                                                 crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
-                                                                modificarTerceto(terceto_Auxiliar,OP1,ultimo_terceto+OFFSET);
+                                                                escribirTerceto(terceto_Auxiliar,OP1,ultimo_terceto+OFFSET);
 															    crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             }
 
@@ -96,8 +96,8 @@ start:
                                                             crear_terceto(ETIQUETA,SIN_OPERADOR,SIN_OPERADOR);
 
                                                             //Cambiar los últimos tercetos
-                                                            modificarTerceto(fIND,OP1,ultimo_terceto + OFFSET);
-                                                            modificarTerceto(jIND,OP1,ultimo_terceto + OFFSET);
+                                                            escribirTerceto(fIND,OP1,ultimo_terceto + OFFSET);
+                                                            escribirTerceto(jIND,OP1,ultimo_terceto + OFFSET);
 
                                                             crear_terceto(WRITE,pos,SIN_OPERADOR);
                                                             
@@ -174,7 +174,7 @@ lista:
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
 															constante = agregarCteIntATabla(cantidadElementos);
                                                             lIND = crear_terceto(ASIGNA,posicion_A_Buscar,constante);
-                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);	   
+                                                            escribirTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);	   
                                                         }             
     | CTE                                               {
                                                             printf("REGLA 8: LISTA -> cte \n");
@@ -187,13 +187,13 @@ lista:
                                                             crear_terceto(CMP, elemento_Pivot, constante);
 															int terceto_Destino = ultimo_terceto+5;
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR); 
-															modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
+															escribirTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);
                                                             pos = agregarCteIntATabla(cantidadElementos);
                                                             constante = agregarCteIntATabla(0);
                                                             crear_terceto(CMP,posicion_A_Buscar,constante);
                                                             terceto_Que_Se_Modifica = crear_terceto(BNE,SIN_OPERADOR, SIN_OPERADOR);
                                                             lIND = crear_terceto(ASIGNA,posicion_A_Buscar,pos);
-                                                            modificarTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);								
+                                                            escribirTerceto(terceto_Que_Se_Modifica,OP1,terceto_Destino+OFFSET);								
                                                         };
 lectura:
     READ ID												{
