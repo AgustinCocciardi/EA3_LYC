@@ -19,8 +19,8 @@
     int fin_tabla = -1;
 
     /*AL MOMENTO DE ASIGNAR*/
-	char idAsignar[TAM_NOMBRE];
-    char pivot[TAM_NOMBRE];
+	char idAsignar[LONGITUD_CADENA];
+    char pivot[LONGITUD_CADENA];
     int esListaVacia;
     int cantidadElementos;
 
@@ -42,7 +42,7 @@
 
     /*PARA TERCETOS*/
 	terceto lista_terceto[MAX_TERCETOS];
-	int ultimo_terceto = -1; /*Me dice donde está el ultimo terceto escrito*/
+	int ultimo_terceto = -1; 
 
 %}
 
@@ -107,7 +107,7 @@ start:
                                                             generarAssembler();
 														};
                                                        
-/* Seccion de codigo */
+
 programa:                                                 
 	programa sentencia	                                {
                                                             printf("REGLA 2: PROG -> PROG SENT\n");
@@ -130,7 +130,7 @@ sentencia:
 															printf("REGLA 3: SENT -> WRITE\n");
                                                             sIND = wIND;
 														};
-/* Otras cosas */
+
 
 asignacion:
 	ID ASIGNA {strcpy(idAsignar, $1);} posicion	    {
@@ -220,8 +220,6 @@ escritura:
                                                             cadena_Auxiliar[longitud] = '\0';
                                                             int pos= agregarConstanteteStringATabla(cadena_Auxiliar);
                                                             wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
-															
-															
 														};
 %%
 
