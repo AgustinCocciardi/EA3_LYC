@@ -214,10 +214,10 @@ escritura:
 														}
     | WRITE CTE_S                                       {
         													printf("REGLA 10: WRITE -> write cte_s\n");
-                                                            int longCad = strlen($2)-2;
-                                                            char cadena_Auxiliar[longCad];
-                                                            strncpy(cadena_Auxiliar, $2 + 1, longCad);
-                                                            cadena_Auxiliar[longCad] = '\0';
+                                                            int longitud = strlen($2)-2;
+                                                            char cadena_Auxiliar[longitud];
+                                                            strncpy(cadena_Auxiliar, $2 + 1, longitud);
+                                                            cadena_Auxiliar[longitud] = '\0';
                                                             int pos= agregarCteStringATabla(cadena_Auxiliar);
                                                             wIND = crear_terceto(WRITE, pos, SIN_OPERADOR);
 															
